@@ -15,7 +15,7 @@ public class ProductRepositoryTest {
 
         ProductRepository products = new ProductRepository();
 
-        Product[] expected = {product1, product2, product4};
+        Product [] expected = {product1, product2, product4};
 
         products.save(product1);
         products.save(product2);
@@ -24,6 +24,21 @@ public class ProductRepositoryTest {
         products.removeById(3);
         Product [] actual = products.getItems();
 
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldNotDel() {
+
+        ProductRepository products = new ProductRepository();
+
+        products.save(product1);
+        products.save(product2);
+        products.save(product3);
+        products.save(product4);
+
+        Assertions.assertThrows(NotFoundException.class, () -> {
+            products.removeById(5);
+        });
     }
 }
