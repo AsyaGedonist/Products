@@ -15,14 +15,14 @@ public class ProductRepositoryTest {
 
         ProductRepository products = new ProductRepository();
 
-        Product [] expected = {product1, product2, product4};
+        Product[] expected = {product1, product2, product4};
 
         products.save(product1);
         products.save(product2);
         products.save(product3);
         products.save(product4);
         products.removeById(3);
-        Product [] actual = products.getItems();
+        Product[] actual = products.getItems();
 
         Assertions.assertArrayEquals(expected, actual);
     }
@@ -39,6 +39,34 @@ public class ProductRepositoryTest {
 
         Assertions.assertThrows(NotFoundException.class, () -> {
             products.removeById(5);
+        });
+    }
+
+    @Test
+    public void shouldAdd() {
+
+        ProductRepository products = new ProductRepository();
+
+        Product[] expected = {product1};
+
+        products.save(product1);
+
+        Product[] actual = products.getItems();
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldNotAdd() {
+
+        ProductRepository products = new ProductRepository();
+
+        products.save(product1);
+        products.save(product2);
+        products.save(product3);
+
+        Assertions.assertThrows(AlreadyExistsException.class, () -> {
+            products.save(product2);
         });
     }
 }
