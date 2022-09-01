@@ -11,16 +11,16 @@ public class ProductTest {
     Product product4 = new Product(4, "4", 40_000_000);
 
     @Test
-    public void shouldNotBeExpensive(){
+    public void shouldNotBeExpensive() {
 
-    boolean expected = false;
-    boolean actual = product1.isTooExpensive();
+        boolean expected = false;
+        boolean actual = product1.isTooExpensive();
 
-    Assertions.assertEquals(expected, actual);
+        Assertions.assertEquals(expected, actual);
     }
 
     @Test
-    public void shouldBeExpensive(){
+    public void shouldBeExpensive() {
 
         boolean expected = true;
         boolean actual = product4.isTooExpensive();
@@ -29,7 +29,7 @@ public class ProductTest {
     }
 
     @Test
-    public void bookShouldNotBeExpensive(){
+    public void bookShouldNotBeExpensive() {
 
         boolean expected = false;
         boolean actual = product2.isTooExpensive();
@@ -38,7 +38,7 @@ public class ProductTest {
     }
 
     @Test
-    public void bookShouldBeExpensive(){
+    public void bookShouldBeExpensive() {
 
         boolean expected = true;
         boolean actual = product3.isTooExpensive();
