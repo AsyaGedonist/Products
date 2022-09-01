@@ -60,12 +60,24 @@ public class ProductRepository {
         }
     }
 
-    public Product findById(int id) {
+    public Product[] findById(int id) {
+        Product pr = null;
         for (Product product : products) {
             if (product.getId() == id) {
-                return product;
+                pr = product;
             }
         }
-        return null;
+        if (pr == null) {
+            throw new NotFoundException(
+                    "Element with id: " + id + " not found");
+        } else {
+            Product[] tmp = new Product[1];
+            for (Product product : products) {
+                if (product.getId() == id) {
+                    tmp[0] = product;
+                }
+            }
+            return tmp;
+        }
     }
 }

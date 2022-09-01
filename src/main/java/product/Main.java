@@ -13,7 +13,8 @@ public class Main {
         );
 
         book.use();
+
+        System.out.println(book.isTooExpensive());
+
     }
-
-
 }

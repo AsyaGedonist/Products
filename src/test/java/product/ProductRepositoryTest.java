@@ -69,4 +69,32 @@ public class ProductRepositoryTest {
             products.save(product2);
         });
     }
+
+    @Test
+    public void shouldFind(){
+
+        ProductRepository products = new ProductRepository();
+
+        products.save(product1);
+        products.save(product2);
+        products.save(product3);
+
+        Product[] expected = {product2};
+        Product[] actual = products.findById(2);
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+    @Test
+    public void shouldNotFind(){
+
+        ProductRepository products = new ProductRepository();
+
+        products.save(product1);
+        products.save(product2);
+        products.save(product3);
+
+        Assertions.assertThrows(NotFoundException.class, () -> {
+            products.findById(5);
+        });
+    }
 }
